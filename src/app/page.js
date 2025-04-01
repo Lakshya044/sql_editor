@@ -1,11 +1,11 @@
 'use client';
 import React, { useEffect } from "react";
-import Sidebar from "@/components/Sidebar";
 import MonacoEditor from "@/components/MonacoEditor";
 import EditorPanel from "@/components/EditorPanel";
 import QueryOutput from "@/components/QueryOutput";
 import useQueryStore from "@/app/store";
 import "@/styles/EditorPage.css";
+import Sidebar from "@/components/Sidebar";
 
 const EditorPage = () => {
   const { currentQuery, queryHistory, queryResult, setQuery, executeQuery, saveQuery, clearQuery } = useQueryStore();
