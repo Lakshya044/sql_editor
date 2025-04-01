@@ -1,14 +1,14 @@
 'use client';
 import useQueryStore from "@/app/store";
 import "@/styles/EditorPanel.css";
-import { FaPlay, FaSave, FaTimes } from "react-icons/fa"; // Import icons
+import { FaPlay, FaSave, FaTimes } from "react-icons/fa"; 
 
 const EditorPanel = () => {
-  const { executeQuery, saveQuery, clearQuery, message } = useQueryStore(); // Get message
+  const { executeQuery, saveQuery, clearQuery, message } = useQueryStore(); 
 
   return (
     <div className="editor-panel">
-      {/* Display error message if exists */}
+     
       {message && (
         <div className="error-message">
           <div className="alert alert-danger">{message}</div>

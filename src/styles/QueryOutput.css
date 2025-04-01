@@ -1,51 +1,79 @@
-/* Output container */
+
 .output-container {
-    margin-top: 15px;
-    padding: 10px;
-    border: 1px solid #181616;
-    background-color: #d16a6a;
-    border-radius: 5px;
-    max-height: 250px;
-    overflow-y: auto; 
-  }
-  
-  /* Output title */
-  .output-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  /* Table container */
-  .query-table-container {
-    max-height: 200px;
-    overflow-y: auto; /* Scroll only if needed */
-  }
-  
-  /* Query table */
-  .query-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  /* Table header */
-  .query-table th {
-    background-color: #007bff;
-    color: rgb(67, 54, 54);
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
-  
-  /* Table cells */
-  .query-table td {
-    border: 1px solid #322d2d;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  /* No data message */
-  .no-data {
-    font-style: italic;
-    color: #777;
-  }
-  
+  margin-top: 15px;
+  padding: 10px;
+ 
+  background-color: #171717;
+  border-radius: 5px;
+  max-height: 250px;
+  overflow-y: auto;
+  position: relative;
+  color: #e0e0e0; 
+}
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+.output-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff; 
+}
+
+
+.query-table-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #303030;
+  border-radius: 5px;
+}
+
+
+.query-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.query-table th {
+  background-color: #007bff;
+  color: #ffffff; 
+  padding: 8px;
+  border: 1px solid #404040;
+}
+
+.query-table td {
+  border: 1px solid #404040;
+  padding: 8px;
+  text-align: left;
+}
+
+
+.no-data {
+  font-style: italic;
+  color: #777;
+  font-size: 24px; 
+  font-weight: bold; 
+  text-align: center; 
+}
+
+
+
+.export-btn {
+  padding: 8px 15px;
+  background-color: #252525;
+  color: #e0e0e0;
+  border: 1px solid #303030;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.export-btn:hover {
+  background-color: #404040;
+}

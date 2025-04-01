@@ -1,55 +1,54 @@
 .editor-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .error-message {
-    margin-bottom: 20px;
-  }
-  
-  .alert.alert-danger {
-    background-color: #805653;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 10px 0;
-  }
-  
-  
-  .panel-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .panel-button .icon {
-    font-size: 18px;
-  }
-  
-  .run {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .save {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .clear {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .panel-button:hover {
-    opacity: 0.8;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.error-message {
+  margin-bottom: 20px;
+}
+
+.alert.alert-danger {
+  background-color: #11141C ;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+
+.panel-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.panel-button .icon {
+  font-size: 18px;
+}
+
+.run {
+  background-color: #28a745;
+  color: white;
+}
+
+.save {
+  background-color: #007bff;
+  color: white;
+}
+
+.clear {
+  background-color: #dc3545;
+  color: white;
+}
+
+.panel-button:hover {
+  opacity: 0.75;
+}
