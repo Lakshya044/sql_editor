@@ -1,0 +1,51 @@
+/* Output container */
+.output-container {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #181616;
+    background-color: #d16a6a;
+    border-radius: 5px;
+    max-height: 250px;
+    overflow-y: auto; 
+  }
+  
+  /* Output title */
+  .output-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Table container */
+  .query-table-container {
+    max-height: 200px;
+    overflow-y: auto; /* Scroll only if needed */
+  }
+  
+  /* Query table */
+  .query-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Table header */
+  .query-table th {
+    background-color: #007bff;
+    color: rgb(67, 54, 54);
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Table cells */
+  .query-table td {
+    border: 1px solid #322d2d;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* No data message */
+  .no-data {
+    font-style: italic;
+    color: #777;
+  }
+  

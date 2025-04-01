@@ -1,14 +1,29 @@
-'use client'
+'use client';
 import useQueryStore from "@/app/store";
+import "@/styles/EditorPanel.css";
+import { FaPlay, FaSave, FaTimes } from "react-icons/fa"; // Import icons
 
 const EditorPanel = () => {
-  const { executeQuery, saveQuery, clearQuery } = useQueryStore();
+  const { executeQuery, saveQuery, clearQuery, message } = useQueryStore(); // Get message
 
   return (
-    <div className="flex gap-4 p-4 border rounded">
-      <button onClick={executeQuery} className="bg-blue-500 text-white px-4 py-2 rounded">Run</button>
-      <button onClick={saveQuery} className="bg-green-500 text-white px-4 py-2 rounded">Save</button>
-      <button onClick={clearQuery} className="bg-red-500 text-white px-4 py-2 rounded">Clear</button>
+    <div className="editor-panel">
+      {/* Display error message if exists */}
+      {message && (
+        <div className="error-message">
+          <div className="alert alert-danger">{message}</div>
+        </div>
+      )}
+
+      <button onClick={executeQuery} className="panel-button run">
+        <FaPlay className="icon" /> Run
+      </button>
+      <button onClick={saveQuery} className="panel-button save">
+        <FaSave className="icon" /> Save
+      </button>
+      <button onClick={clearQuery} className="panel-button clear">
+        <FaTimes className="icon" /> Clear
+      </button>
     </div>
   );
 };

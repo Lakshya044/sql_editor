@@ -1,38 +1,27 @@
-'use client'
-import React, { useState } from "react";
+"use client";
+import React from "react";
 import Sidebar from "@/components/sidebar";
 import MonacoEditor from "@/components/Editor";
 import EditorPanel from "@/components/EditorPanel";
+import QueryOutput from "@/components/output";
+import useQueryStore from "@/app/store";
 import "@/styles/EditorPage.css";
 
 const EditorPage = () => {
-  const [query, setQuery] = useState("");
-  const [history, setHistory] = useState([]);
+  const { currentQuery, queryHistory, queryResult, setQuery, executeQuery, saveQuery, clearQuery } = useQueryStore();
 
   const predefinedQueries = [
-    "SELECT * FROM users;",
-    "SELECT name, age FROM employees;",
-    "SELECT * FROM orders WHERE status = 'delivered';",
+    "SELECT * FROM internetData;",
+    "SELECT id, first_name, last_name FROM internetData;",
   ];
-
-  const executeQuery = () => {
-    setHistory([...history, query]);
-  };
-
-  const saveQuery = () => {
-    alert("Query saved!");
-  };
-
-  const clearQuery = () => {
-    setQuery("");
-  };
 
   return (
     <div className="editor-page">
-      <Sidebar queries={predefinedQueries} history={history} onSelectQuery={setQuery} />
+      <Sidebar queries={predefinedQueries} history={queryHistory} onSelectQuery={setQuery} />
       <div className="editor-wrapper">
-        <MonacoEditor query={query} setQuery={setQuery} />
+        <MonacoEditor query={currentQuery} setQuery={setQuery} />
         <EditorPanel executeQuery={executeQuery} saveQuery={saveQuery} clearQuery={clearQuery} />
+        <QueryOutput queryResult={queryResult} />
       </div>
     </div>
   );

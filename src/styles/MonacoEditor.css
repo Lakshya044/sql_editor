@@ -1,0 +1,14 @@
+.monaco-editor-container {
+    width: 1000px; /* Full width */
+    height: 250px; /* Full height */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevents overflow */
+  }
+  
+  .monaco-editor-container .monaco-editor {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height within the container */
+    flex-grow: 1; /* Ensures the editor takes full available space */
+  }
+  

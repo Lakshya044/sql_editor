@@ -1,16 +1,16 @@
 
 .sidebar {
-    width: 250px;
+    width: 500px;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #a28686;
     padding: 15px;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid #d2b2b2;
   }
   
   .sidebar h2 {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 24px;
+    color: #c21f1f;
+    margin-bottom: 30px;
   }
   
   .sidebar ul {
@@ -20,7 +20,7 @@
   
   .sidebar li {
     padding: 10px;
-    background-color: #fff;
+    background-color: #393131;
     margin-bottom: 5px;
     cursor: pointer;
     transition: 0.3s;
@@ -28,6 +28,6 @@
   }
   
   .sidebar li:hover {
-    background-color: #ddd;
+    background-color: #221f1f;
   }
   

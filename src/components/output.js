@@ -1,27 +1,37 @@
-'use client'
+'use client';
 import useQueryStore from "@/app/store";
+import "@/styles/QueryOutput.css"; // Import the CSS file
 
 const QueryOutput = () => {
   const { queryResult } = useQueryStore();
 
   return (
-    <div className="p-4 border rounded">
-      <h3 className="text-lg font-bold">Query Output</h3>
-      <table className="w-full border-collapse border border-gray-300">
-        <thead>
-          <tr>
-            {queryResult.length > 0 &&
-              Object.keys(queryResult[0]).map((key) => <th key={key} className="border p-2">{key}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {queryResult.map((row, index) => (
-            <tr key={index}>
-              {Object.values(row).map((value, idx) => <td key={idx} className="border p-2">{value}</td>)}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="output-container">
+      <h3 className="output-title">Query Output</h3>
+      {queryResult.length > 0 ? (
+        <div className="query-table-container">
+          <table className="query-table">
+            <thead>
+              <tr>
+                {Object.keys(queryResult[0]).map((key) => (
+                  <th key={key}>{key}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {queryResult.map((row, index) => (
+                <tr key={index}>
+                  {Object.values(row).map((value, idx) => (
+                    <td key={idx}>{value}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="no-data">No data available</p>
+      )}
     </div>
   );
 };

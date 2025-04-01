@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Data1,Data2 } from "../../public/data/data"; 
+import { Data1, Data2 } from "../../public/data/data"; 
 
 const useQueryStore = create((set) => ({
   searchQueries: [
@@ -10,31 +10,38 @@ const useQueryStore = create((set) => ({
   queryHistory: [], 
   currentQuery: "", 
   queryResult: [], 
+  message: "",
 
   setQuery: (query) => set({ currentQuery: query }),
 
   executeQuery: () => set((state) => {
-    const newHistory = [...state.queryHistory, state.currentQuery];
-
     let mockResults = [];
+    let message = "";
+    let newHistory = state.queryHistory;
 
-    // Query matching logic
     if (state.currentQuery.trim() === "SELECT * FROM internetData;") {
       mockResults = Data1;
+      newHistory = [...newHistory, state.currentQuery]; // Save query to history
     } else if (state.currentQuery.trim() === "SELECT id, first_name, last_name FROM internetData;") {
       mockResults = Data2;
+      newHistory = [...newHistory, state.currentQuery]; // Save query to history
+    } else if (state.currentQuery.trim() === "") {
+      message = "Please select predefined test queries.";
+    } else {
+      message = "Please use only the predefined test queries.";
     }
 
     return {
       queryHistory: newHistory,
       queryResult: mockResults,
+      message,
     };
   }),
 
   saveQuery: () => set((state) => ({
-    queryHistory: state.queryHistory.includes(state.currentQuery)
-      ? state.queryHistory
-      : [...state.queryHistory, state.currentQuery],
+    searchQueries: state.searchQueries.includes(state.currentQuery)
+      ? state.searchQueries
+      : [...state.searchQueries, state.currentQuery],
   })),
 
   clearQuery: () => set({ currentQuery: "" }),
