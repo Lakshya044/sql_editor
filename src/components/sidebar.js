@@ -1,5 +1,6 @@
 
-import React from "react";
+'use client';
+import React, { useState } from "react";
 import { FaCloud, FaRedo } from "react-icons/fa"; 
 import useQueryStore from "@/app/store";
 import "@/styles/Sidebar.css"; 
@@ -7,14 +8,34 @@ import "@/styles/Sidebar.css";
 const Sidebar = () => {
   const { searchQueries, queryHistory, setQuery } = useQueryStore();
 
+  
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchHistory, setSearchHistory] = useState("");
+
+  
+  const filteredQueries = searchQueries.filter(query =>
+    query.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  
+  const filteredHistory = queryHistory.filter(query =>
+    query.toLowerCase().includes(searchHistory.toLowerCase())
+  );
+
   return (
     <div className="sidebar">
-      {/* Queries Available */}
+   
       <div className="section">
         <h2><FaCloud className="icon" /> Queries Available</h2>
-        <input type="text" placeholder="Search..." className="search-bar" />
+        <input 
+          type="text" 
+          placeholder="Search queries..." 
+          className="search-bar"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         <ul>
-          {searchQueries.map((query, index) => (
+          {filteredQueries.map((query, index) => (
             <li key={index} onClick={() => setQuery(query)} className="query-item">
               {query}
             </li>
@@ -22,12 +43,18 @@ const Sidebar = () => {
         </ul>
       </div>
 
-    
+     
       <div className="section">
         <h2><FaRedo className="icon" /> Query History</h2>
-        <input type="text" placeholder="Search..." className="search-bar" />
+        <input 
+          type="text" 
+          placeholder="Search history..." 
+          className="search-bar"
+          value={searchHistory}
+          onChange={(e) => setSearchHistory(e.target.value)}
+        />
         <ul>
-          {queryHistory.map((query, index) => (
+          {filteredHistory.map((query, index) => (
             <li key={index} onClick={() => setQuery(query)} className="query-item">
               {query}
             </li>

@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
 import MonacoEditor from "@/components/MonacoEditor";
 import EditorPanel from "@/components/EditorPanel";
@@ -13,8 +13,35 @@ const EditorPage = () => {
   const predefinedQueries = [
     "SELECT * FROM internetData;",
     "SELECT id, first_name, last_name FROM internetData;",
+    "SELECT * FROM personalDatabase;",
+    "SELECT * FROM accountDatabase;",
+    "SELECT account_id, username, password,phone_number FROM accountDatabase;",
   ];
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey) {
+        switch (event.key.toLowerCase()) {
+          case "r": // Ctrl + R → Run query
+            event.preventDefault();
+            executeQuery();
+            break;
+          case "s": // Ctrl + S → Save query
+            event.preventDefault();
+            saveQuery();
+            break;
+          case "l": // Ctrl + L → Clear query
+            event.preventDefault();
+            clearQuery();
+            break;
+          default:
+            break;
+        }
+      }
+    };
 
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [executeQuery, saveQuery, clearQuery]);
   return (
     <div className="editor-page">
      
