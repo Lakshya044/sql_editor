@@ -1,15 +1,46 @@
 
 .sidebar {
-  width: 500px;
+  width: 25%;
   height: 100vh;
-  background-color: #303030;
-  padding: 15px;
-  border-right: 1px solid #303030;
+  background-color: #171717;
+  color: white;
+  padding: 20px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+    min-height: 35vh;
+    overflow: scroll;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .sections-wrapper {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .section {
+    width: 50%;
+  }
 }
 
 .section {
   margin-bottom: 20px;
-  
+  flex: 1;
 }
 
 h2 {
@@ -18,11 +49,10 @@ h2 {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 18;
 }
 
 .icon {
-  color: #333;
+  color: #ccc;
 }
 
 .search-bar {

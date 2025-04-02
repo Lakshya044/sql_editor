@@ -2,14 +2,14 @@
 .output-container {
   margin-top: 15px;
   padding: 10px;
- 
   background-color: #171717;
   border-radius: 5px;
   max-height: 250px;
   overflow-y: auto;
   position: relative;
-  color: #e0e0e0; 
+  color: #e0e0e0;
 }
+
 .output-header {
   display: flex;
   justify-content: space-between;
@@ -17,21 +17,19 @@
   margin-bottom: 10px;
 }
 
-
 .output-title {
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff; 
+  color: #ffffff;
 }
-
 
 .query-table-container {
   max-height: 200px;
   overflow-y: auto;
   border: 1px solid #303030;
   border-radius: 5px;
+  overflow-x: auto; 
 }
-
 
 .query-table {
   width: 100%;
@@ -42,27 +40,26 @@
 
 .query-table th {
   background-color: #007bff;
-  color: #ffffff; 
+  color: #ffffff;
   padding: 8px;
   border: 1px solid #404040;
+  white-space: nowrap; 
 }
 
 .query-table td {
   border: 1px solid #404040;
   padding: 8px;
   text-align: left;
+  white-space: nowrap; 
 }
-
 
 .no-data {
   font-style: italic;
   color: #777;
-  font-size: 24px; 
-  font-weight: bold; 
-  text-align: center; 
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }
-
-
 
 .export-btn {
   padding: 8px 15px;
@@ -76,4 +73,27 @@
 
 .export-btn:hover {
   background-color: #404040;
+}
+
+
+@media (max-width: 900px) {
+  .output-container {
+    max-height: 200px;
+    padding: 8px;
+  }
+
+  .query-table-container {
+    max-height: 150px;
+    overflow-x: auto;
+  }
+
+  .query-table th, .query-table td {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .export-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }

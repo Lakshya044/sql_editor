@@ -1,9 +1,9 @@
+
 .editor-page {
   display: flex;
   height: 100vh;
   background-color: #171717;
 }
-
 
 .sidebar {
   width: 25%;
@@ -13,14 +13,12 @@
   min-width: 250px;
 }
 
-
 .editor-container {
   width: 75%;
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
-
 
 .editor-output-wrapper {
   flex: 1;
@@ -29,31 +27,72 @@
   gap: 10px;
 }
 
-
 .editor-section {
   flex: 1;
   display: flex;
+  flex-direction: column; 
   gap: 20px;
   background: #303030;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-height: 50vh;
 }
 
 
 .editor-panel-wrapper {
-  width: 250px;
-  min-width: 200px;
+  width: 100%;  
+  min-width: 100%;
+  transition: width 0.3s ease-in-out;
+  max-height: fit-content;
 }
 
 
-.query-output-section {
-  flex: 1;
-  
-  padding: 15px;
+.editor-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.panel-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
   border-radius: 5px;
-  
-  overflow: auto;
+  transition: 0.3s;
+  background-color: #222;
+  color: white;
+  flex: 1; 
+  max-width: 300px;
+}
+
+.panel-button .icon {
+  font-size: 18px;
+}
+
+
+.run {
+  background-color: #28a745;
+}
+
+.save {
+  background-color: #007bff;
+}
+
+.clear {
+  background-color: #dc3545;
+}
+
+.panel-button:hover {
+  opacity: 0.75;
 }
 
 
@@ -78,5 +117,49 @@
   .query-output-section {
     flex: none;
     height: auto;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .editor-panel {
+    flex-wrap: nowrap; 
+    gap: 8px;
+  }
+
+  .panel-button {
+    flex: 1; 
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .editor-panel {
+    flex-wrap: wrap; 
+    justify-content: center;
+  }
+
+  .panel-button {
+    width: 45%;
+    font-size: 13px;
+  }
+
+  .panel-button .icon {
+    font-size: 12px;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .panel-button {
+    width: 30%;
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .panel-button .icon {
+    font-size: 10px;
   }
 }
