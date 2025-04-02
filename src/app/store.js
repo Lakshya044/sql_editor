@@ -1,72 +1,50 @@
 import { create } from "zustand";
-import { Data1, Data2 , Data3,Data4 ,Data5} from "../../public/data/data"; 
+import { Data1, Data2, Data3, Data4, Data5 } from "@/data/data";
+
+
+const mockDataMap = Object.freeze({
+  "SELECT * FROM internetData;": Data1,
+  "SELECT id, first_name, last_name FROM internetData;": Data2,
+  "SELECT * FROM personalDatabase;": Data3,
+  "SELECT * FROM accountDatabase;": Data4,
+  "SELECT account_id, username, password, phone_number FROM accountDatabase;": Data5,
+});
 
 const useQueryStore = create((set) => ({
-  searchQueries: [
-    "SELECT * FROM internetData;",
-    "SELECT id, first_name, last_name FROM internetData;",
-    "SELECT * FROM personalDatabase;",
-    "SELECT * FROM accountDatabase;",
-    "SELECT account_id, username, password,phone_number FROM accountDatabase;",
-  ], 
-
+  searchQueries: Object.keys(mockDataMap), 
   queryHistory: [], 
   currentQuery: "", 
   queryResult: [], 
   message: "",
 
-  setQuery: (query) => set({ currentQuery: query }),
+  setQuery: (query) => set({ currentQuery: query.trim() }),
 
   executeQuery: () => set((state) => {
-    let mockResults = [];
-    let message = "";
-    let newHistory = state.queryHistory;
+    const trimmedQuery = state.currentQuery.trim();
 
-    if (state.currentQuery.trim() === "SELECT * FROM internetData;") {
-      mockResults = Data1;
-      newHistory = [...newHistory, state.currentQuery]; 
-    } else if (state.currentQuery.trim() === "SELECT id, first_name, last_name FROM internetData;") {
-      mockResults = Data2;
-      newHistory = [...newHistory, state.currentQuery]; 
-    } 
-    else if (state.currentQuery.trim() === "SELECT * FROM personalDatabase;") {
-      mockResults = Data3;
-      
-      newHistory = [...newHistory, state.currentQuery]; 
-    }else if (state.currentQuery.trim() === "SELECT * FROM accountDatabase;") {
-      mockResults = Data4;
-      
-      newHistory = [...newHistory, state.currentQuery]; 
+    if (!trimmedQuery) {
+      return { message: "Please select predefined test queries." };
     }
-    else if (state.currentQuery.trim() ===  "SELECT account_id, username, password,phone_number FROM accountDatabase;") {
-      mockResults = Data5;
-      
-      newHistory = [...newHistory, state.currentQuery]; 
+
+    if (!(trimmedQuery in mockDataMap)) {
+      return { message: "Please use only the predefined test queries." };
     }
-    else if (state.currentQuery.trim() === "") {
-      message = "Please select predefined test queries.";
-    } else {
-      message = "Please use only the predefined test queries.";
-    }
+
+    
+    const newHistory = [trimmedQuery, ...state.queryHistory.filter((q) => q !== trimmedQuery)].slice(0, 10);
 
     return {
       queryHistory: newHistory,
-      queryResult: mockResults,
-      message,
-      
+      queryResult: mockDataMap[trimmedQuery],
+      message: "",
     };
   }),
 
   saveQuery: () => set((state) => {
-    if (state.currentQuery.trim() === "") {
-      return {}; 
-    }
-  
-    return {
-      searchQueries: state.searchQueries.includes(state.currentQuery)
-        ? state.searchQueries
-        : [...state.searchQueries, state.currentQuery],
-    };
+    const trimmedQuery = state.currentQuery.trim();
+    if (!trimmedQuery || state.searchQueries.includes(trimmedQuery)) return {};
+
+    return { searchQueries: [...state.searchQueries, trimmedQuery] };
   }),
 
   clearQuery: () => set({ currentQuery: "" }),

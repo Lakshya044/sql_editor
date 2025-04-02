@@ -1,8 +1,13 @@
 
 "use client";
 import { useState, useEffect } from "react";
-import Editor from "@monaco-editor/react";
+import dynamic from "next/dynamic"; 
+const Editor = dynamic(() => import("@monaco-editor/react"), {
+  ssr: false, 
+  loading: () => <p>Loading Editor...</p>, 
+});
 import useQueryStore from "@/app/store";
+
 import "@/styles/MonacoEditor.css";
 
 const MonacoEditor = () => {

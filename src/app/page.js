@@ -1,11 +1,27 @@
-'use client';
+
+"use client";
 import React, { useEffect } from "react";
-import MonacoEditor from "@/components/MonacoEditor";
+import dynamic from "next/dynamic";  
 import EditorPanel from "@/components/EditorPanel";
-import QueryOutput from "@/components/QueryOutput";
 import useQueryStore from "@/app/store";
 import "@/styles/EditorPage.css";
-import Sidebar from "@/components/Sidebar";
+
+const MonacoEditor = dynamic(() => import("@/components/MonacoEditor"), { 
+  ssr: false, 
+  loading: () => <p>Loading Editor...</p> 
+});
+
+
+const Sidebar = dynamic(() => import("@/components/Sidebar"), { 
+  ssr: false, 
+  loading: () => <p>Loading Sidebar...</p> 
+});
+
+
+const QueryOutput = dynamic(() => import("@/components/QueryOutput"), { 
+  ssr: false, 
+  loading: () => <p>Loading Output...</p> 
+});
 
 const EditorPage = () => {
   const { currentQuery, queryHistory, queryResult, setQuery, executeQuery, saveQuery, clearQuery } = useQueryStore();
@@ -17,6 +33,7 @@ const EditorPage = () => {
     "SELECT * FROM accountDatabase;",
     "SELECT account_id, username, password,phone_number FROM accountDatabase;",
   ];
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.ctrlKey) {
@@ -42,15 +59,15 @@ const EditorPage = () => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [executeQuery, saveQuery, clearQuery]);
+
   return (
     <div className="editor-page">
-     
+      {/* Sidebar */}
       <Sidebar queries={predefinedQueries} history={queryHistory} onSelectQuery={setQuery} />
 
-      
       <div className="editor-container">
         <div className="editor-output-wrapper">
-        
+          {/* Editor Section */}
           <div className="editor-section">
             <MonacoEditor query={currentQuery} setQuery={setQuery} />
             <div className="editor-panel-wrapper">
@@ -58,7 +75,7 @@ const EditorPage = () => {
             </div>
           </div>
 
-         
+          {/* Query Output */}
           <div className="query-output-section">
             <QueryOutput queryResult={queryResult} />
           </div>
