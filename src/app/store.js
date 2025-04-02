@@ -57,11 +57,17 @@ const useQueryStore = create((set) => ({
     };
   }),
 
-  saveQuery: () => set((state) => ({
-    searchQueries: state.searchQueries.includes(state.currentQuery)
-      ? state.searchQueries
-      : [...state.searchQueries, state.currentQuery],
-  })),
+  saveQuery: () => set((state) => {
+    if (state.currentQuery.trim() === "") {
+      return {}; 
+    }
+  
+    return {
+      searchQueries: state.searchQueries.includes(state.currentQuery)
+        ? state.searchQueries
+        : [...state.searchQueries, state.currentQuery],
+    };
+  }),
 
   clearQuery: () => set({ currentQuery: "" }),
 }));
